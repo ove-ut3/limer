@@ -6,7 +6,7 @@
 \usage{
 get_responses(iSurveyID, sDocumentType = "csv", sLanguageCode = NULL,
   sCompletionStatus = "complete", sHeadingType = "code",
-  sResponseType = "long", ...)
+  sResponseType = "long", sep = ";", ...)
 }
 \arguments{
 \item{iSurveyID}{\dots}
@@ -31,4 +31,3 @@ This function exports and downloads data from a LimeSurvey survey.
 get_responses(12345)
 }
 }
-

@@ -1,7 +1,7 @@
 #' Mailing
 #'
 #' @param from Expéditeur list("email", "alias")
-#' @param to data.frame des destinataires
+#' @param to Tibble des destinataires
 #' @param subject Sujet du mail
 #' @param body Corps du mail
 #' @param sleep Temporisation entre chaque envoi de mail
@@ -47,11 +47,11 @@ mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
 
   mailing <- pbapply::pblapply(participants$tid, function(tid) {
 
-    Sys.sleep(sleep)
+      Sys.sleep(sleep)
 
-    mailing <- limer::mail_registered_participant(survey_id, tid = tid)
+      mailing <- limer::mail_registered_participant(survey_id, tid = tid)
 
-  })
+    })
 
   if (delete == TRUE) {
     suppression <- limer::call_limer("delete_survey", params = list("iSurveyID" = survey_id))

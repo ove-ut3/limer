@@ -4,7 +4,7 @@
 \alias{base64_to_df}
 \title{Convert base64 encoded data to a data frame}
 \usage{
-base64_to_df(x)
+base64_to_df(x, sep = ";")
 }
 \arguments{
 \item{x}{\dots}
@@ -17,4 +17,3 @@ This function converts raw base64 results into a data frame.
 base64_to_df()
 }
 }
-

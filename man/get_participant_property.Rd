@@ -4,7 +4,8 @@
 \alias{get_participant_property}
 \title{Get a participant property from a LimeSurvey survey}
 \usage{
-get_participant_property(iSurveyID, aTokenQueryProperties, aTokenProperties)
+get_participant_property(iSurveyID, aTokenQueryProperties,
+  aTokenProperties)
 }
 \arguments{
 \item{iSurveyID}{\dots}

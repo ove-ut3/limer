@@ -27,4 +27,3 @@ call_limer(method = "get_summary",
                          sStatname = "completed_responses"))
 }
 }
-

@@ -23,4 +23,3 @@ This function logs into the LimeSurvey API and provides an access session key.
 get_session_key()
 }
 }
-

@@ -9,7 +9,7 @@ mailing(from, to, subject, body, sleep = 10, delete = FALSE)
 \arguments{
 \item{from}{Expéditeur list("email", "alias")}
 
-\item{to}{data.frame des destinataires}
+\item{to}{Tibble des destinataires}
 
 \item{subject}{Sujet du mail}
 
