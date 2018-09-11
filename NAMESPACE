@@ -2,6 +2,7 @@
 
 export(base64_to_df)
 export(call_limer)
+export(get_attributes_descriptions)
 export(get_participants)
 export(get_responses)
 export(get_session_key)
