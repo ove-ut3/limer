@@ -1,0 +1,62 @@
+#' Mailing
+#'
+#' @param from Expéditeur list("email", "alias")
+#' @param to data.frame des destinataires
+#' @param subject Sujet du mail
+#' @param body Corps du mail
+#' @param sleep Temporisation entre chaque envoi de mail
+#' @param delete Delete mailing survey after mailing is finished
+#'
+#' @export
+mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
+
+  attributes <- stringr::str_subset(names(to), "^attribute_\\d+$")
+
+  if (length(attributes) >= 1) {
+
+    attributedescriptions <- paste0('"', attributes, '":{"description":"","mandatory":"N","show_register":"N","cpdbmap":""}', collapse = ",")
+    attributedescriptions <- paste0("{", attributedescriptions, "}")
+
+    surveyls_attributecaptions <- paste0('"', attributes, '":""', collapse = ",")
+    surveyls_attributecaptions <- paste0("{", surveyls_attributecaptions, "}")
+
+  } else {
+    attributedescriptions <- "{}"
+    surveyls_attributecaptions <- "{}"
+  }
+
+  lss <- readLines(paste0(find.package("limer"),"/extdata/mailing.lss"), encoding = "UTF-8")
+  lss <- sub("##subject##", subject, lss)
+  lss <- sub("##body##", body, lss)
+  lss <- sub("##from_alias##", from$alias, lss)
+  lss <- sub("##from_email##", from$email)
+  lss <- gsub("##attributedescriptions##", attributedescriptions, lss)
+  lss <- gsub("##surveyls_attributecaptions##", surveyls_attributecaptions, lss)
+
+  lss <- limer::str_to_base64(lss)
+
+  key <- limer::get_session_key()
+
+  survey_id <- limer::call_limer(method = "import_survey", params = list("sImportData" = lss, "sImportDataType" = "lss"))
+
+  activation <- limer::call_limer("activate_tokens", params = list("iSurveyID" = survey_id, "aAttributeFields" = list()))
+
+  participants <- limer::call_limer("add_participants", list("iSurveyID" = survey_id, "aParticipantData" = to))
+
+  message("Mailing to ", nrow(participants), " participants.")
+
+  mailing <- pbapply::pblapply(participants$tid, function(tid) {
+
+    Sys.sleep(sleep)
+
+    mailing <- limer::mail_registered_participant(survey_id, tid = tid)
+
+  })
+
+  if (delete == TRUE) {
+    suppression <- limer::call_limer("delete_survey", params = list("iSurveyID" = survey_id))
+  }
+
+  release <- limer::release_session_key()
+
+}
