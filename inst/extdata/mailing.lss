@@ -153,7 +153,7 @@
     <surveyls_email_confirm_subj><![CDATA[##subject##]]></surveyls_email_confirm_subj>
     <surveyls_email_confirm><![CDATA[<html>  <head>   <title></title>  </head>  <body>##body##</body>  </html>  ]]></surveyls_email_confirm>
     <surveyls_dateformat><![CDATA[5]]></surveyls_dateformat>
-    <surveyls_attributecaptions><![CDATA[##surveyls_attributecaptions##]]></surveyls_attributecaptions>
+    <surveyls_attributecaptions><![CDATA[]]></surveyls_attributecaptions>
     <email_admin_notification_subj><![CDATA[Soumission de réponse pour le questionnaire {SURVEYNAME}]]></email_admin_notification_subj>
     <email_admin_notification><![CDATA[<html>  <head>   <title></title>  </head>  <body> </body>  </html>  ]]></email_admin_notification>
     <email_admin_responses_subj><![CDATA[Soumission de réponse pour le questionnaire {SURVEYNAME} avec résultats]]></email_admin_responses_subj>

@@ -10,19 +10,14 @@
 #' @export
 mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
 
-  attributes <- stringr::str_subset(names(to), "^attribute_\\d+$")
+  attributes <- stringr::str_subset(names(to), stringr::regex("^attribute_\\d+$", ignore_case = TRUE))
 
   if (length(attributes) >= 1) {
-
     attributedescriptions <- paste0('"', attributes, '":{"description":"","mandatory":"N","show_register":"N","cpdbmap":""}', collapse = ",")
     attributedescriptions <- paste0("{", attributedescriptions, "}")
 
-    surveyls_attributecaptions <- paste0('"', attributes, '":""', collapse = ",")
-    surveyls_attributecaptions <- paste0("{", surveyls_attributecaptions, "}")
-
   } else {
     attributedescriptions <- "{}"
-    surveyls_attributecaptions <- "{}"
   }
 
   lss <- readLines(paste0(find.package("limer"),"/extdata/mailing.lss"), encoding = "UTF-8")
@@ -31,7 +26,6 @@ mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
   lss <- sub("##from_alias##", from$alias, lss)
   lss <- sub("##from_email##", from$email)
   lss <- gsub("##attributedescriptions##", attributedescriptions, lss)
-  lss <- gsub("##surveyls_attributecaptions##", surveyls_attributecaptions, lss)
 
   lss <- limer::str_to_base64(lss)
 
