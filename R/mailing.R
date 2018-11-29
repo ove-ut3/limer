@@ -24,7 +24,7 @@ mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
   lss <- sub("##subject##", subject, lss)
   lss <- sub("##body##", body, lss)
   lss <- sub("##from_alias##", from$alias, lss)
-  lss <- sub("##from_email##", from$email)
+  lss <- sub("##from_email##", from$email, lss)
   lss <- gsub("##attributedescriptions##", attributedescriptions, lss)
 
   lss <- limer::str_to_base64(lss)
