@@ -5,9 +5,10 @@
 #' @param survey_id \dots
 #' @param survey_title \dots
 #' @param attributes_description \dots
+#' @param activate \dots
 #'
 #' @export
-create_survey <- function(lss_file, tbl_participants, survey_id = NULL, survey_title = NULL, attributes_description = NULL) {
+create_survey <- function(lss_file, tbl_participants, survey_id = NA_integer_, survey_title = NA_character_, attributes_description = NULL, activate = TRUE) {
 
   lss <- readr::read_lines(lss_file)
 
@@ -30,23 +31,36 @@ create_survey <- function(lss_file, tbl_participants, survey_id = NULL, survey_t
     lss <- stringr::str_replace(lss, "<attributedescriptions><!\\[CDATA\\[.*?\\]\\]><\\/attributedescriptions>",
                                 paste0("<attributedescriptions><![CDATA[", attributedescriptions, "]]></attributedescriptions>"))
 
+    lss <- stringr::str_replace(lss, "<attributedescriptions\\/>",
+                                paste0("<attributedescriptions><![CDATA[", attributedescriptions, "]]></attributedescriptions>"))
+
   }
 
   key <- limer::get_session_key()
 
-  survey_id <- limer::call_limer(method = "import_survey",
-                                    params = list("sImportData" = limer::str_to_base64(lss),
-                                                  "sImportDataType" = "lss",
-                                                  "NewSurveyName" = survey_title,
-                                                  "DestSurveyID" = survey_id))
+  survey_id_created <- limer::call_limer(method = "import_survey",
+                                         params = list("sImportData" = limer::str_to_base64(lss),
+                                                       "sImportDataType" = "lss",
+                                                       "NewSurveyName" = survey_title,
+                                                       "DestSurveyID" = survey_id))
+
+  if (!is.null(survey_id)) {
+    if (survey_id_created != survey_id) {
+      message("Code ", survey_id, " not available : code ", survey_id_created, " created.")
+    }
+  }
+  survey_id <- survey_id_created
 
   activation <- limer::call_limer("activate_tokens", params = list("iSurveyID" = survey_id, "aAttributeFields" = list()))
 
   ajout <- limer::call_limer("add_participants", params = list("iSurveyID" = survey_id, "aParticipantData" = tbl_participants, "bCreateToken" = FALSE))
 
-  activation <- limer::call_limer("activate_survey", list("iSurveyID" = survey_id))
-  limer::call_limer("set_survey_properties", list("iSurveyID" = survey_id, "aSurveyData" = list("expires" = "")))
+  if (activate == TRUE) {
+    activation <- limer::call_limer("activate_survey", list("iSurveyID" = survey_id))
+    limer::call_limer("set_survey_properties", list("iSurveyID" = survey_id, "aSurveyData" = list("expires" = "")))
+  }
 
   release <- limer::release_session_key()
 
+  return(survey_id)
 }
