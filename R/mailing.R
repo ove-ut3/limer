@@ -45,6 +45,10 @@ mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
 
       mailing <- limer::mail_registered_participant(survey_id, tid = tid)
 
+      if (mailing[[1]]$status != "OK") {
+        stop("Limesurvey session interrupted.")
+      }
+
     })
 
   if (delete == TRUE) {
