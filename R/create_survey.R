@@ -1,16 +1,20 @@
 #' create_survey
 #'
-#' @param lss_file \dots
 #' @param tbl_participants \dots
+#' @param lss_file \dots
 #' @param survey_id \dots
 #' @param survey_title \dots
 #' @param attributes_description \dots
 #' @param activate \dots
 #'
 #' @export
-create_survey <- function(lss_file, tbl_participants, survey_id = NA_integer_, survey_title = NA_character_, attributes_description = NULL, activate = TRUE) {
+create_survey <- function(tbl_participants, lss_file = NULL, survey_id = NA_integer_, survey_title = NA_character_, attributes_description = NULL, activate = TRUE) {
 
-  lss <- readr::read_lines(lss_file)
+  if (!is.null(lss_file)) {
+    lss <- readr::read_lines(lss_file)
+  } else {
+    lss <- readr::read_lines(paste0(find.package("limer"), "/extdata/limesurvey.lss"))
+  }
 
   if (!is.null(attributes_description)) {
 
@@ -44,7 +48,7 @@ create_survey <- function(lss_file, tbl_participants, survey_id = NA_integer_, s
                                                        "NewSurveyName" = survey_title,
                                                        "DestSurveyID" = survey_id))
 
-  if (!is.null(survey_id)) {
+  if (!is.na(survey_id)) {
     if (survey_id_created != survey_id) {
       message("Code ", survey_id, " not available : code ", survey_id_created, " created.")
     }
