@@ -4,7 +4,8 @@
 \alias{mailing}
 \title{Mailing}
 \usage{
-mailing(from, to, subject, body, sleep = 10, delete = FALSE)
+mailing(from, to, subject, body, sleep = 10, delete = FALSE,
+  mailing = TRUE)
 }
 \arguments{
 \item{from}{Expéditeur list("email", "alias")}
@@ -18,6 +19,8 @@ mailing(from, to, subject, body, sleep = 10, delete = FALSE)
 \item{sleep}{Temporisation entre chaque envoi de mail}
 
 \item{delete}{Delete mailing survey after mailing is finished}
+
+\item{mailing}{Delete mailing survey after mailing is finished}
 }
 \description{
 Mailing

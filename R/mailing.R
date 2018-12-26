@@ -6,9 +6,10 @@
 #' @param body Corps du mail
 #' @param sleep Temporisation entre chaque envoi de mail
 #' @param delete Delete mailing survey after mailing is finished
+#' @param mailing Delete mailing survey after mailing is finished
 #'
 #' @export
-mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
+mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE, mailing = TRUE) {
 
   attributes <- stringr::str_subset(names(to), stringr::regex("^attribute_\\d+$", ignore_case = TRUE))
 
@@ -37,9 +38,11 @@ mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
 
   participants <- limer::call_limer("add_participants", list("iSurveyID" = survey_id, "aParticipantData" = to))
 
-  message("Mailing to ", nrow(participants), " participants.")
+  if (mailing == TRUE) {
 
-  mailing <- pbapply::pblapply(participants$tid, function(tid) {
+    message("Mailing to ", nrow(participants), " participants.")
+
+    mailing <- pbapply::pblapply(participants$tid, function(tid) {
 
       Sys.sleep(sleep)
 
@@ -50,6 +53,8 @@ mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE) {
       }
 
     })
+
+  }
 
   if (delete == TRUE) {
     suppression <- limer::call_limer("delete_survey", params = list("iSurveyID" = survey_id))
