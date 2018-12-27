@@ -38,7 +38,7 @@ update_participants <- function(id_survey, tbl_update, message = TRUE) {
         Sys.sleep(1)
 
         set_participant_properties <- limer::call_limer("set_participant_properties",
-                                                        params = list("iSurveyID" = row$id_survey,
+                                                        params = list("iSurveyID" = id_survey,
                                                                       "aTokenQueryProperties" = row$tid,
                                                                       "aTokenData" = as.list(stats::setNames(row$value_update, row$column))))
 
