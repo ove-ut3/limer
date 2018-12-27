@@ -24,7 +24,7 @@ update_participants <- function(id_survey, tbl_update, message = TRUE, sleep = 1
   names(tbl_update)[which(names(tbl_update) %in% attributes_descriptions)] <- names(attributes_descriptions)[unlist(sapply(names(tbl_update), function(x) which(attributes_descriptions == x)))]
 
   diff <- limer::get_participants(id_survey, aAttributes = as.list(names(tbl_update))) %>%
-    dplyr::select(tid, token, dplyr::matches("^attribute_")) %>%
+    dplyr::select(tid, names(tbl_update)) %>%
     tidyr::gather("column", "value_ls", -tid, -token) %>%
     dplyr::full_join(tidyr::gather(tbl_update, "column", "value_update", -token),
                      by = c("token", "column")) %>%
