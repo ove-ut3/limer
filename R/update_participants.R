@@ -12,7 +12,7 @@ update_participants <- function(id_survey, tbl_update, message = TRUE) {
   attributes_descriptions <- limer::get_attributes_descriptions(id_survey)
 
   if (!"token" %in% names(tbl_update)) {
-    stop("colmun \"token\" must be in tbl_update.", call. = FALSE)
+    stop("column \"token\" must be in tbl_update.", call. = FALSE)
   }
 
   names(tbl_update)[which(names(tbl_update) %in% attributes_descriptions)] <- names(attributes_descriptions)[unlist(sapply(names(tbl_update), function(x) which(attributes_descriptions == x)))]
