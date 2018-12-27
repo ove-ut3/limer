@@ -27,6 +27,7 @@ get_participants <- function(iSurveyID, iStart = 0, iLimit = NULL, bUnused = FAL
   results <- limer::call_limer(method = "list_participants", params = params)
   results <- jsonlite::flatten(results)
   names(results) <- sub("^participant_info\\.(firstname|lastname|email)$", "\\1", names(results))
+  results[results == ""]  <- NA_character_
 
   return(results)
 }
