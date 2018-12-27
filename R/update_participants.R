@@ -17,7 +17,7 @@ update_participants <- function(id_survey, tbl_update, message = TRUE, sleep = 1
   }
 
   if (!any(names(tbl_update) %in% attributes_descriptions)) {
-    message("No common colmun between Limesurvey attributes and tbl_update names.")
+    message("Survey ", id_survey, ": No common colmun between Limesurvey attributes and tbl_update names.")
     return()
   }
 
@@ -32,11 +32,11 @@ update_participants <- function(id_survey, tbl_update, message = TRUE, sleep = 1
 
   if (nrow(diff) == 0) {
 
-    if (message == TRUE) message("No updates")
+    if (message == TRUE) message("Survey ", id_survey, ": No updates")
 
   } else {
 
-    if (message == TRUE) message(nrow(diff), " updates...")
+    if (message == TRUE) message("Survey ", id_survey, ": ", nrow(diff), " updates...")
 
     update <- diff %>%
       split(1:nrow(.)) %>%
