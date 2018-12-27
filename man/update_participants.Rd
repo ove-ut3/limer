@@ -4,7 +4,7 @@
 \alias{update_participants}
 \title{update_participants}
 \usage{
-update_participants(id_survey, tbl_update, message = TRUE)
+update_participants(id_survey, tbl_update, message = TRUE, sleep = 1)
 }
 \arguments{
 \item{id_survey}{\dots}
@@ -12,6 +12,8 @@ update_participants(id_survey, tbl_update, message = TRUE)
 \item{tbl_update}{\dots}
 
 \item{message}{\dots}
+
+\item{sleep}{\dots}
 }
 \description{
 update_participants

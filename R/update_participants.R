@@ -3,9 +3,10 @@
 #' @param id_survey \dots
 #' @param tbl_update \dots
 #' @param message \dots
+#' @param sleep \dots
 #'
 #' @export
-update_participants <- function(id_survey, tbl_update, message = TRUE) {
+update_participants <- function(id_survey, tbl_update, message = TRUE, sleep = 1) {
 
   key <- limer::get_session_key()
 
@@ -41,7 +42,7 @@ update_participants <- function(id_survey, tbl_update, message = TRUE) {
       split(1:nrow(.)) %>%
       pbapply::pblapply(function(row) {
 
-        Sys.sleep(1)
+        Sys.sleep(sleep)
 
         set_participant_properties <- limer::call_limer("set_participant_properties",
                                                         params = list("iSurveyID" = id_survey,
