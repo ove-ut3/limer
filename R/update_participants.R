@@ -15,6 +15,11 @@ update_participants <- function(id_survey, tbl_update, message = TRUE) {
     stop("column \"token\" must be in tbl_update.", call. = FALSE)
   }
 
+  if (!any(names(tbl_update) %in% attributes_descriptions)) {
+    message("No common colmun between Limesurvey attributes and tbl_update names.")
+    return()
+  }
+
   names(tbl_update)[which(names(tbl_update) %in% attributes_descriptions)] <- names(attributes_descriptions)[unlist(sapply(names(tbl_update), function(x) which(attributes_descriptions == x)))]
 
   diff <- limer::get_participants(id_survey, aAttributes = as.list(names(tbl_update))) %>%
