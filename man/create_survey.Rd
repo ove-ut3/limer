@@ -4,14 +4,14 @@
 \alias{create_survey}
 \title{create_survey}
 \usage{
-create_survey(lss_file, tbl_participants, survey_id = NA_integer_,
-  survey_title = NA_character_, attributes_description = NULL,
-  activate = TRUE)
+create_survey(tbl_participants, lss_file = NULL,
+  survey_id = NA_integer_, survey_title = NA_character_,
+  attributes_description = NULL, activate = TRUE)
 }
 \arguments{
-\item{lss_file}{\dots}
-
 \item{tbl_participants}{\dots}
+
+\item{lss_file}{\dots}
 
 \item{survey_id}{\dots}
 
