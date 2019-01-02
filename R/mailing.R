@@ -9,7 +9,7 @@
 #' @param mailing Delete mailing survey after mailing is finished
 #'
 #' @export
-mailing <- function(from, to, subject, body, sleep = 10, delete = FALSE, mailing = TRUE) {
+mailing <- function(from, to, subject, body, sleep = 7, delete = FALSE, mailing = TRUE) {
 
   attributes <- stringr::str_subset(names(to), stringr::regex("^attribute_\\d+$", ignore_case = TRUE))
 
