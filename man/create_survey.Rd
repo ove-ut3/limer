@@ -2,25 +2,77 @@
 % Please edit documentation in R/create_survey.R
 \name{create_survey}
 \alias{create_survey}
-\title{create_survey}
+\title{Create a complete survey}
 \usage{
-create_survey(tbl_participants, lss_file = NULL,
-  survey_id = NA_integer_, survey_title = NA_character_,
-  attributes_description = NULL, activate = TRUE)
+create_survey(survey_id, survey_properties, groups, questions,
+  questions_properties = NULL, subquestions = NULL, answers = NULL,
+  participants_attributes = NULL, quiet = FALSE)
 }
 \arguments{
-\item{tbl_participants}{\dots}
+\item{survey_id}{Survey id}
 
-\item{lss_file}{\dots}
+\item{survey_properties}{Survey properties}
 
-\item{survey_id}{\dots}
+\item{groups}{Question groups}
 
-\item{survey_title}{\dots}
+\item{questions}{Questions}
 
-\item{attributes_description}{\dots}
+\item{questions_properties}{Questions properties}
 
-\item{activate}{\dots}
+\item{subquestions}{Subquestions}
+
+\item{answers}{Answers}
+
+\item{participants_attributes}{Participants attributes}
+
+\item{quiet}{If \code{TRUE} then there is no output during survey creation}
 }
 \description{
-create_survey
+This function is based on \link{add_survey}, \link{add_group} and \link{add_question} functions.\cr
+They are all three using the original xml templates (LSS, LSG and LSQ) allowing to fully automatise the survey creation process.\cr
+Data frames are expected for all of the arguments except survey_id.
+}
+\examples{
+\dontrun{
+
+limer::create_survey(
+  survey_id = 123456,
+  survey_properties = data.frame(
+    key = c("language", "surveyls_title", "admin", "showprogress"),
+    language = c(NA, "en", NA, NA),
+    value = c("en", "Survey title", "Survey administrator", "Y")
+  ),
+  groups = data.frame(
+    group_order = c(1, 2),
+    group_name = c("Group 1", "Group 2"),
+    description = c("Description 1", NA)
+  ),
+  questions = data.frame(
+    group_order = c(1, 1, 2),
+    type = c("T", "S", "F"),
+    title = c("q1", "q2", "q3"),
+    question = c("Text question", "Short text question", "Array radio question"),
+    help = c("Help 1", NA, NA)
+  ),
+  questions_properties = data.frame(
+    question_title = c("q1", "q2", "q3"),
+    key = c("mandatory", "default", "other"),
+    value = c("Y", "{TOKEN:ATTRIBUTE_1}", "Y")
+  ),
+  subquestions = data.frame(
+    question_title = c("q3", "q3"),
+    title = c("SQ001", "SQ002"),
+    question = c("Subquestion 1", "Subquestion 2")
+  ),
+  answers = data.frame(
+    question_title = c("q3", "q3", "q3"),
+    code = c("A1", "A2", "A3"),
+    answer = c("Answer 1", "Answer 2", "Answer 3")
+  ),
+  participants_attributes = data.frame(
+    description = c("attribute 1 description")
+  )
+)
+}
+
 }
