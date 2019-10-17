@@ -4,8 +4,8 @@
 \alias{mailing}
 \title{Mailing}
 \usage{
-mailing(from, to, subject, body, sleep = 10, delete = FALSE,
-  mailing = TRUE)
+mailing(from, to, subject, body, sleep = 7, delete = FALSE,
+  test = FALSE, progress_bar = TRUE)
 }
 \arguments{
 \item{from}{Expéditeur list("email", "alias")}
@@ -20,7 +20,9 @@ mailing(from, to, subject, body, sleep = 10, delete = FALSE,
 
 \item{delete}{Delete mailing survey after mailing is finished}
 
-\item{mailing}{Delete mailing survey after mailing is finished}
+\item{test}{\dots}
+
+\item{progress_bar}{Display a progres bar}
 }
 \description{
 Mailing

@@ -6,10 +6,16 @@
 #' @param body Corps du mail
 #' @param sleep Temporisation entre chaque envoi de mail
 #' @param delete Delete mailing survey after mailing is finished
-#' @param mailing Delete mailing survey after mailing is finished
+#' @param test \dots
+#' @param progress_bar Display a progres bar
 #'
 #' @export
-mailing <- function(from, to, subject, body, sleep = 7, delete = FALSE, mailing = TRUE) {
+mailing <- function(from, to, subject, body, sleep = 7, delete = FALSE, test = FALSE, progress_bar = TRUE) {
+
+  if (nrow(to) == 0) {
+    message("0 participants in to tibble.")
+    return()
+  }
 
   attributes <- stringr::str_subset(names(to), stringr::regex("^attribute_\\d+$", ignore_case = TRUE))
 
@@ -21,7 +27,7 @@ mailing <- function(from, to, subject, body, sleep = 7, delete = FALSE, mailing 
     attributedescriptions <- "{}"
   }
 
-  lss <- readLines(paste0(find.package("limer"),"/extdata/mailing.lss"), encoding = "UTF-8")
+  lss <- readLines(system.file("extdata/mailing.lss", package = "limer"), encoding = "UTF-8")
   lss <- sub("##subject##", subject, lss)
   lss <- sub("##body##", body, lss)
   lss <- sub("##from_alias##", from$alias, lss)
@@ -38,18 +44,29 @@ mailing <- function(from, to, subject, body, sleep = 7, delete = FALSE, mailing 
 
   participants <- limer::call_limer("add_participants", list("iSurveyID" = survey_id, "aParticipantData" = to))
 
-  if (mailing == TRUE) {
+  if (test == FALSE) {
 
     message("Mailing to ", nrow(participants), " participants.")
 
-    mailing <- pbapply::pblapply(participants$tid, function(tid) {
+    if (progress_bar == TRUE) {
+      fn_apply <- pbapply::pblapply
+    } else {
+      fn_apply <- lapply
+    }
+
+    mailing <- fn_apply(participants$tid, function(tid) {
 
       Sys.sleep(sleep)
 
       mailing <- limer::mail_registered_participant(survey_id, tid = tid)
 
-      if (mailing[[1]]$status != "OK") {
-        stop("Limesurvey session interrupted.")
+      if (length(mailing[[1]]$status) == 0) {
+
+        print("reprise au participant tid ", tid)
+        key <- limer::get_session_key()
+        mailing <- limer::mail_registered_participant(survey_id, tid = tid)
+
+        #stop("Limesurvey session interrupted.")
       }
 
     })
