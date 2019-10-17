@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+ <LimeSurveyDocType>Group</LimeSurveyDocType>
+ <DBVersion>355</DBVersion>
+ <languages/>
+ <groups>
+  <fields>
+   <fieldname>gid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>group_name</fieldname>
+   <fieldname>group_order</fieldname>
+   <fieldname>description</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>randomization_group</fieldname>
+   <fieldname>grelevance</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <gid><![CDATA[]]></gid>
+    <sid><![CDATA[]]></sid>
+    <group_name><![CDATA[]]></group_name>
+    <group_order><![CDATA[]]></group_order>
+    <description/>
+    <language><![CDATA[]]></language>
+    <randomization_group/>
+    <grelevance/>
+   </row>
+  </rows>
+ </groups>
+</document>
