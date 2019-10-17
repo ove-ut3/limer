@@ -1,0 +1,272 @@
+key;language;default
+sid;;
+admin;;
+expires;;
+startdate;;
+adminemail;;
+anonymized;;N
+faxto;;
+format;;G
+savetimings;;N
+template;;fruity
+language;;
+additional_languages;;
+datestamp;;N
+usecookie;;N
+allowregister;;N
+allowsave;;Y
+autonumber_start;;0
+autoredirect;;N
+allowprev;;N
+printanswers;;N
+ipaddr;;N
+refurl;;N
+publicstatistics;;N
+publicgraphs;;N
+listpublic;;N
+htmlemail;;Y
+sendconfirmation;;Y
+tokenanswerspersistence;;N
+assessments;;N
+usecaptcha;;N
+usetokens;;N
+bounce_email;;
+attributedescriptions;;
+emailresponseto;;
+emailnotificationto;;
+tokenlength;;15
+showxquestions;;Y
+showgroupinfo;;B
+shownoanswer;;Y
+showqnumcode;;X
+bouncetime;;N
+bounceprocessing;;N
+bounceaccounttype;;
+bounceaccounthost;;
+bounceaccountpass;;
+bounceaccountencryption;;
+bounceaccountuser;;
+showwelcome;;Y
+showprogress;;Y
+navigationdelay;;0
+nokeyboard;;N
+alloweditaftercompletion;;N
+googleanalyticsstyle;;0
+googleanalyticsapikey;;1
+questionindex;;0
+gsid;;1
+showsurveypolicynotice;;0
+surveyls_survey_id;;
+surveyls_language;;
+surveyls_title;;
+surveyls_description;;
+surveyls_welcometext;;
+surveyls_endtext;;
+surveyls_url;;
+surveyls_urldescription;;
+surveyls_email_invite_subj;fr;Invitation à participer à un questionnaire
+surveyls_email_invite_subj;en;Invitation to participate in a survey
+surveyls_email_invite;fr;"Cher(e) {FIRSTNAME},<br />
+<br />
+Vous avez été invité(e) à participer à un questionnaire.<br />
+<br />
+Celui-ci est intitulé :<br />
+""{SURVEYNAME}""<br />
+<br />
+""{SURVEYDESCRIPTION}""<br />
+<br />
+Pour participer, veuillez cliquer sur le lien ci-dessous.<br />
+<br />
+Cordialement,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Cliquez ici pour remplir ce questionnaire :<br />
+{SURVEYURL}<br />
+<br />
+Si vous ne souhaitez pas participer à ce questionnaire et ne souhaitez plus recevoir aucune invitation, veuillez cliquer sur le lien suivant :<br />
+{OPTOUTURL}<br />
+<br />
+Si vous êtes sur liste noire mais que vous voulez participer à ce questionnaire et recevoir les invitations, merci de cliquer sur le lien suivant :<br />
+{OPTINURL}"
+surveyls_email_invite;en;"Dear {FIRSTNAME},<br />
+<br />
+you have been invited to participate in a survey.<br />
+<br />
+The survey is titled:<br />
+""{SURVEYNAME}""<br />
+<br />
+""{SURVEYDESCRIPTION}""<br />
+<br />
+To participate, please click on the link below.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Click here to do the survey:<br />
+{SURVEYURL}<br />
+<br />
+If you do not want to participate in this survey and don't want to receive any more invitations please click the following link:<br />
+{OPTOUTURL}<br />
+<br />
+If you are blacklisted but want to participate in this survey and want to receive invitations please click the following link:<br />
+{OPTINURL}"
+surveyls_email_remind_subj;fr;Rappel pour participer à un questionnaire
+surveyls_email_remind_subj;en;Reminder to participate in a survey
+surveyls_email_remind;fr;"Cher(e) {FIRSTNAME},<br />
+<br />
+Vous avez été invité(e) à participer à un questionnaire récemment.<br />
+<br />
+Nous avons pris en compte que vous n’avez pas encore complété le questionnaire, et nous vous rappelons que celui-ci est toujours disponible si vous souhaitez participer.<br />
+<br />
+Le questionnaire est intitulé :<br />
+""{SURVEYNAME}""<br />
+<br />
+""{SURVEYDESCRIPTION}""<br />
+<br />
+Pour participer, veuillez cliquer sur le lien ci-dessous.<br />
+<br />
+Cordialement,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Cliquez ici pour faire le questionnaire :<br />
+{SURVEYURL}<br />
+<br />
+Si vous ne souhaitez pas participer à ce questionnaire et ne souhaitez plus recevoir aucune invitation, veuillez cliquer sur le lien suivant :<br />
+{OPTOUTURL}"
+surveyls_email_remind;en;"Dear {FIRSTNAME},<br />
+<br />
+Recently we invited you to participate in a survey.<br />
+<br />
+We note that you have not yet completed the survey, and wish to remind you that the survey is still available should you wish to take part.<br />
+<br />
+The survey is titled:<br />
+""{SURVEYNAME}""<br />
+<br />
+""{SURVEYDESCRIPTION}""<br />
+<br />
+To participate, please click on the link below.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Click here to do the survey:<br />
+{SURVEYURL}<br />
+<br />
+If you do not want to participate in this survey and don't want to receive any more invitations please click the following link:<br />
+{OPTOUTURL}"
+surveyls_email_register_subj;fr;Confirmation d’enregistrement pour le questionnaire
+surveyls_email_register_subj;en;Survey registration confirmation
+surveyls_email_register;fr;"Bonjour {FIRSTNAME},<br />
+<br />
+Vous (ou quelqu’un utilisant votre adresse électronique) vous êtes enregistré pour participer à un questionnaire en ligne intitulé {SURVEYNAME}.<br />
+<br />
+Pour compléter ce questionnaire, cliquez sur le lien suivant :<br />
+{SURVEYURL}<br />
+<br />
+Si vous avez des questions à propos de ce questionnaire, ou si vous ne vous êtes pas enregistré pour participer à celui-ci et croyez que ce message est une erreur, veuillez contacter {ADMINNAME} à l’adresse {ADMINEMAIL}"
+surveyls_email_register;en;"Dear {FIRSTNAME},<br />
+<br />
+You, or someone using your email address, have registered to participate in an online survey titled {SURVEYNAME}.<br />
+<br />
+To complete this survey, click on the following URL:<br />
+<br />
+{SURVEYURL}<br />
+<br />
+If you have any questions about this survey, or if you did not register to participate and believe this email is in error, please contact {ADMINNAME} at {ADMINEMAIL}."
+surveyls_email_confirm_subj;fr;Confirmation de votre participation à notre questionnaire
+surveyls_email_confirm_subj;en;Confirmation of your participation in our survey
+surveyls_email_confirm;fr;"Bonjour {FIRSTNAME},<br />
+<br />
+Ce message vous confirme que vous avez complété le questionnaire intitulé {SURVEYNAME} et que votre réponse a été enregistrée. Merci pour votre participation.<br />
+<br />
+Si vous avez des questions à propos de ce message, veuillez contacter {ADMINNAME} à l’adresse {ADMINEMAIL}.<br />
+<br />
+Cordialement,<br />
+<br />
+{ADMINNAME}"
+surveyls_email_confirm;en;"Dear {FIRSTNAME},<br />
+<br />
+this email is to confirm that you have completed the survey titled {SURVEYNAME} and your response has been saved. Thank you for participating.<br />
+<br />
+If you have any further questions about this email, please contact {ADMINNAME} on {ADMINEMAIL}.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME}"
+surveyls_dateformat;fr;1
+surveyls_dateformat;en;9
+surveyls_attributecaptions;;
+email_admin_notification_subj;fr;Soumission de réponse pour le questionnaire {SURVEYNAME}
+email_admin_notification_subj;en;Response submission for survey {SURVEYNAME}
+email_admin_notification;fr;"Bonjour,<br />
+<br />
+Une nouvelle réponse a été soumise pour votre questionnaire '{SURVEYNAME}'.<br />
+<br />
+Cliquez sur le lien suivant pour voir la réponse :<br />
+{VIEWRESPONSEURL}<br />
+<br />
+Cliquez sur le lien suivant pour éditer la réponse :<br />
+{EDITRESPONSEURL}<br />
+<br />
+Visualisez les statistiques en cliquant ici :<br />
+{STATISTICSURL}"
+email_admin_notification;en;"Hello,<br />
+<br />
+A new response was submitted for your survey '{SURVEYNAME}'.<br />
+<br />
+Click the following link to see the individual response:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+Click the following link to edit the individual response:<br />
+{EDITRESPONSEURL}<br />
+<br />
+View statistics by clicking here:<br />
+{STATISTICSURL}"
+email_admin_responses_subj;fr;Soumission de réponse pour le questionnaire {SURVEYNAME} avec résultats
+email_admin_responses_subj;en;Response submission for survey {SURVEYNAME} with results
+email_admin_responses;fr;"Bonjour,<br />
+<br />
+Une nouvelle réponse a été soumise pour votre questionnaire '{SURVEYNAME}'.<br />
+<br />
+Cliquez sur le lien suivant pour voir cette réponse :<br />
+{VIEWRESPONSEURL}<br />
+<br />
+Cliquez sur le lien suivant pour éditer cette réponse individuelle :<br />
+{EDITRESPONSEURL}<br />
+<br />
+Visualisez les statistiques en cliquant ici :<br />
+{STATISTICSURL}<br />
+<br />
+<br />
+Les réponses suivantes ont été données par le participant :<br />
+{ANSWERTABLE}"
+email_admin_responses;en;"Hello,<br />
+<br />
+A new response was submitted for your survey '{SURVEYNAME}'.<br />
+<br />
+Click the following link to see the individual response:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+Click the following link to edit the individual response:<br />
+{EDITRESPONSEURL}<br />
+<br />
+View statistics by clicking here:<br />
+{STATISTICSURL}<br />
+<br />
+<br />
+The following answers were given by the participant:<br />
+{ANSWERTABLE}"
+surveyls_numberformat;fr;0
+surveyls_numberformat;en;0
+attachments;;
+surveyls_policy_notice;;
+surveyls_policy_error;;
+surveyls_policy_notice_label;;

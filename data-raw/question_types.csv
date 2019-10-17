@@ -1,0 +1,30 @@
+type;limer_type;description
+5;radio_5;5 Point Choice Radio-Buttons
+B;array_radio_10;Array (10 Point Choice) Radio-Buttons
+A;array_radio_5;Array (5 Point Choice) Radio-Buttons
+1;;Array (Flexible Labels) Dual Scale
+H;;Array (Flexible) - Column Format
+F;array_radio;Array (Flexible) - Row Format
+E;;Array (Increase/Same/Decrease) Radio-Buttons
+:;;Array (Multi Flexi) 1 To 10
+";";array_text;Array (Multi Flexi) Text
+C;array_yes_no;Array (Yes/Uncertain/No) Radio-Buttons
+X;;Boilerplate Question
+D;date;Date
+*;equation;Equation
+~124~;file_upload;File Upload (records number of files uploaded)
+G;gender;Gender Drop-Down List
+U;text_huge;Huge Free Text
+I;language;Language Question
+!;list_dropdown;List - Dropdown
+L;list_radio;List Drop-Down/Radio-Button List
+O;list_dropdown_comment;List With Comment Drop-Down/Radio-Button List + Textarea
+T;text_long;Long Free Text
+M;multiple_choice;Multiple Choice Checkbox
+P;multiple_choice_comment;Multiple Choice With Comments Checkbox + Text
+K;multiple_numeric;Multiple Numerical Question
+Q;multiple_text_short;Multiple Short Text
+N;numeric;Numerical Question Type
+R;ranking;Ranking Style
+S;text_short;Short Free Text
+Y;yes_no;Yes/No Radio-Buttons
