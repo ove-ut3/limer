@@ -4,28 +4,23 @@
 \alias{get_participants}
 \title{Export list of participants from a LimeSurvey survey}
 \usage{
-get_participants(iSurveyID, iStart = 0, iLimit = NULL,
-  bUnused = FALSE, aAttributes = list(), aConditions = list())
+get_participants(iSurveyID, attributes_descriptions = NULL,
+  attributes = NULL, all_attributes = FALSE, conditions = list(),
+  session = FALSE)
 }
 \arguments{
 \item{iSurveyID}{\dots}
 
-\item{iStart}{\dots}
+\item{attributes_descriptions}{\dots}
 
-\item{iLimit}{\dots}
+\item{attributes}{\dots}
 
-\item{bUnused}{\dots}
+\item{all_attributes}{\dots}
 
-\item{aAttributes}{\dots}
+\item{conditions}{\dots}
+
+\item{session}{\dots}
 }
 \description{
 This function exports and downloads the list of participants from a LimeSurvey survey.
-}
-\examples{
-\dontrun{
-get_participants(12345, iStart=1, iLimit=10, bUnused=FALSE,
-                                   aAttributes=list('attribute_1','attribute_2'))
-get_participants(12345, iStart=1, iLimit=10, bUnused=FALSE, aAttributes=FALSE)
-get_participants(12345, iStart=1, iLimit=10, bUnused=FALSE, aAttributes=FALSE, aConditions = list("email" = "example@domain"))
-}
 }

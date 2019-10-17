@@ -6,7 +6,7 @@
 \usage{
 get_responses(iSurveyID, sDocumentType = "csv", sLanguageCode = NULL,
   sCompletionStatus = "complete", sHeadingType = "code",
-  sResponseType = "long", sep = ";", ...)
+  sResponseType = "long", sep = ";", session = FALSE, ...)
 }
 \arguments{
 \item{iSurveyID}{\dots}
