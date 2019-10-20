@@ -2,28 +2,24 @@
 % Please edit documentation in R/mailing.R
 \name{mailing}
 \alias{mailing}
-\title{Mailing}
+\title{Perform mailing}
 \usage{
-mailing(from, to, subject, body, sleep = 7, delete = FALSE,
-  test = FALSE, progress_bar = TRUE)
+mailing(survey_id, tid, sleep = 7, delete = FALSE,
+  progress_bar = TRUE, session = FALSE)
 }
 \arguments{
-\item{from}{Expéditeur list("email", "alias")}
+\item{survey_id}{Id de l'enquête créée}
 
-\item{to}{Tibble des destinataires}
-
-\item{subject}{Sujet du mail}
-
-\item{body}{Corps du mail}
+\item{tid}{Participants tid}
 
 \item{sleep}{Temporisation entre chaque envoi de mail}
 
 \item{delete}{Delete mailing survey after mailing is finished}
 
-\item{test}{\dots}
-
 \item{progress_bar}{Display a progres bar}
+
+\item{session}{Open a limesurvey session}
 }
 \description{
-Mailing
+Perform mailing
 }

@@ -4,13 +4,10 @@
 #' @param to Tibble des destinataires
 #' @param subject Sujet du mail
 #' @param body Corps du mail
-#' @param sleep Temporisation entre chaque envoi de mail
-#' @param delete Delete mailing survey after mailing is finished
-#' @param test \dots
-#' @param progress_bar Display a progres bar
+#' @param session Open a limesurvey session
 #'
 #' @export
-mailing <- function(from, to, subject, body, sleep = 7, delete = FALSE, test = FALSE, progress_bar = TRUE) {
+mailing_create_survey <- function(from, to, subject, body, session = FALSE) {
 
   if (nrow(to) == 0) {
     message("0 participants in to tibble.")
@@ -36,7 +33,9 @@ mailing <- function(from, to, subject, body, sleep = 7, delete = FALSE, test = F
 
   lss <- limer::str_to_base64(lss)
 
-  key <- limer::get_session_key()
+  if (session) {
+    key <- limer::get_session_key()
+  }
 
   survey_id <- limer::call_limer(method = "import_survey", params = list("sImportData" = lss, "sImportDataType" = "lss"))
 
@@ -44,39 +43,63 @@ mailing <- function(from, to, subject, body, sleep = 7, delete = FALSE, test = F
 
   participants <- limer::call_limer("add_participants", list("iSurveyID" = survey_id, "aParticipantData" = to))
 
-  if (test == FALSE) {
+  if (session) {
+    release <- limer::release_session_key()
+  }
 
-    message("Mailing to ", nrow(participants), " participants.")
+  list(
+    "survey_id" = survey_id,
+    "tid" = participants$tid
+  )
 
-    if (progress_bar == TRUE) {
-      fn_apply <- pbapply::pblapply
-    } else {
-      fn_apply <- lapply
-    }
+}
 
-    mailing <- fn_apply(participants$tid, function(tid) {
+#' Perform mailing
+#'
+#' @param survey_id Id de l'enquête créée
+#' @param tid Participants tid
+#' @param sleep Temporisation entre chaque envoi de mail
+#' @param delete Delete mailing survey after mailing is finished
+#' @param progress_bar Display a progres bar
+#' @param session Open a limesurvey session
+#'
+#' @export
+mailing <- function(survey_id, tid, sleep = 7, delete = FALSE, progress_bar = TRUE, session = FALSE) {
 
-      Sys.sleep(sleep)
+  if (session) {
+    key <- limer::get_session_key()
+  }
 
+
+  if (progress_bar == TRUE) {
+    fn_apply <- pbapply::pblapply
+  } else {
+    fn_apply <- lapply
+  }
+
+  mailing <- fn_apply(participants$tid, function(tid) {
+
+    Sys.sleep(sleep)
+
+    mailing <- limer::mail_registered_participant(survey_id, tid = tid)
+
+    if (length(mailing[[1]]$status) == 0) {
+
+      print("reprise au participant tid ", tid)
+      key <- limer::get_session_key()
       mailing <- limer::mail_registered_participant(survey_id, tid = tid)
 
-      if (length(mailing[[1]]$status) == 0) {
+      #stop("Limesurvey session interrupted.")
+    }
 
-        print("reprise au participant tid ", tid)
-        key <- limer::get_session_key()
-        mailing <- limer::mail_registered_participant(survey_id, tid = tid)
-
-        #stop("Limesurvey session interrupted.")
-      }
-
-    })
-
-  }
+  })
 
   if (delete == TRUE) {
     suppression <- limer::call_limer("delete_survey", params = list("iSurveyID" = survey_id))
   }
 
-  release <- limer::release_session_key()
+  if (session) {
+    release <- limer::release_session_key()
+  }
 
 }
