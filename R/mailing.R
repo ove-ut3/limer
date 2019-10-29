@@ -89,7 +89,6 @@ mailing <- function(survey_id, tid, sleep = 7, delete = FALSE, progress_bar = TR
       key <- limer::get_session_key()
       mailing <- limer::mail_registered_participant(survey_id, tid = tid)
 
-      #stop("Limesurvey session interrupted.")
     }
 
   })
