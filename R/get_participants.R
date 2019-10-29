@@ -49,15 +49,19 @@ get_participants <- function(iSurveyID, attributes_descriptions = NULL, attribut
     rename <- purrr::map(rename, ~ .[which(. %in% attributes_descriptions)])
   }
 
-  participants <- purrr::pmap_dfr(list(iSurveyID, attributes, rename),
-                                  ~ get_participants_(..1, aAttributes = as.list(..2), aConditions = conditions) %>%
-                                    dplyr::mutate_at(dplyr::vars(dplyr::matches("^attribute_")), as.character) %>%
-                                    patchr::rename(dplyr::tibble(column = names(..3), rename = ..3), drop = FALSE),
-                                  .id = "id_join") %>%
+  participants <- purrr::pmap_dfr(
+    list(iSurveyID, attributes, rename),
+    ~ get_participants_(..1, aAttributes = as.list(..2), aConditions = conditions) %>%
+      dplyr::mutate_at(dplyr::vars(dplyr::matches("^attribute_")), as.character) %>%
+      patchr::rename(dplyr::tibble(column = names(..3), rename = ..3), drop = FALSE),
+    .id = "id_join"
+  ) %>%
     dplyr::as_tibble() %>%
-    dplyr::left_join(dplyr::tibble(survey_id = iSurveyID) %>%
-                       dplyr::mutate(id_join = as.character(dplyr::row_number())),
-                     by = "id_join") %>%
+    dplyr::left_join(
+      dplyr::tibble(survey_id = iSurveyID) %>%
+        dplyr::mutate(id_join = as.character(dplyr::row_number())),
+      by = "id_join"
+    ) %>%
     dplyr::select(-id_join) %>%
     dplyr::mutate(tid = as.integer(tid))
 
