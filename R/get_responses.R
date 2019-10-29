@@ -20,31 +20,36 @@ get_responses <- function(iSurveyID, sDocumentType = "csv", sLanguageCode = NULL
     key <- limer::get_session_key()
   }
 
-  sCompletionStatus <- dplyr::recode(perimetre, "toutes" = "all", "completes" = "complete", "incompletes" = "incomplete")
-
   if (any(limer::completed_responses(iSurveyID, session = FALSE) != 0)) {
 
-    reponses <- iSurveyID %>%
-      purrr::map_df(get_responses_, sResponseType = "short", sCompletionStatus = sCompletionStatus,
-                    .id = "id_join") %>%
+    responses <- iSurveyID %>%
+      purrr::map_df(
+        get_responses_, sResponseType = "short", sCompletionStatus = sCompletionStatus,
+        .id = "id_join"
+      ) %>%
       dplyr::as_tibble() %>%
-      dplyr::left_join(dplyr::tibble(id_survey = iSurveyID) %>%
-                         dplyr::mutate(id_join = as.character(dplyr::row_number())),
-                       by = "id_join") %>%
+      dplyr::left_join(
+        dplyr::tibble(id_survey = iSurveyID) %>%
+          dplyr::mutate(id_join = as.character(dplyr::row_number())),
+        by = "id_join"
+      ) %>%
       dplyr::select(-id_join) %>%
-      dplyr::mutate_at(which(purrr::map_lgl(., is.character)), iconv, from = "UTF-8") %>%
-      dplyr::mutate(date_heure_reponse = lubridate::ymd_hms(submitdate),
-                    date_reponse = lubridate::as_date(date_heure_reponse))
+      dplyr::mutate_if(is.character, iconv, from = "UTF-8")
 
   } else {
-    reponses <- dplyr::tibble(token = character(0), datestamp = character(0))
+    responses <- dplyr::tibble(
+      survey_id = character(0),
+      token = character(0),
+      submitdate = lubridate::ymd_hms(character(0)),
+      lastpage = integer(0)
+    )
   }
 
   if (session == TRUE) {
     release <- limer::release_session_key()
   }
 
-  return(reponses)
+  return(responses)
 }
 
 #' Export data from a LimeSurvey survey
