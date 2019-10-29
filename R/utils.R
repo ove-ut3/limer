@@ -22,9 +22,22 @@ get_participants_ <- function(iSurveyID, iStart = 0, iLimit = NULL, bUnused = FA
   params <- as.list(environment())
 
   results <- limer::call_limer(method = "list_participants", params = params)
-  results <- jsonlite::flatten(results)
-  names(results) <- sub("^participant_info\\.(firstname|lastname|email)$", "\\1", names(results))
-  results[results == ""]  <- NA_character_
+
+  if (any(class(results) == "data.frame")) {
+    results <- jsonlite::flatten(results)
+    names(results) <- sub("^participant_info\\.(firstname|lastname|email)$", "\\1", names(results))
+    results[results == ""]  <- NA_character_
+  } else {
+    if (results$status == "No survey participants found.") {
+      results <- data.frame(
+        tid = character(0),
+        token = character(0),
+        firstname = character(0),
+        lastname = character(0),
+        email = character(0)
+      )
+    }
+  }
 
   return(results)
 }
