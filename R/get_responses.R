@@ -29,7 +29,7 @@ get_responses <- function(iSurveyID, sDocumentType = "csv", sLanguageCode = NULL
       ) %>%
       dplyr::as_tibble() %>%
       dplyr::left_join(
-        dplyr::tibble(id_survey = iSurveyID) %>%
+        dplyr::tibble(survey_id = iSurveyID) %>%
           dplyr::mutate(id_join = as.character(dplyr::row_number())),
         by = "id_join"
       ) %>%
