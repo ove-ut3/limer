@@ -22,6 +22,8 @@ get_responses <- function(iSurveyID, sDocumentType = "csv", sLanguageCode = NULL
 
   if (any(limer::completed_responses(iSurveyID, session = FALSE) != 0)) {
 
+    iSurveyID <- iSurveyID[which(limer::completed_responses(iSurveyID, session = FALSE) != 0)]
+
     responses <- iSurveyID %>%
       purrr::map_df(
         get_responses_, sResponseType = "short", sCompletionStatus = sCompletionStatus,
