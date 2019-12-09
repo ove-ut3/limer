@@ -34,7 +34,8 @@ get_participants_ <- function(iSurveyID, iStart = 0, iLimit = NULL, bUnused = FA
         token = character(0),
         firstname = character(0),
         lastname = character(0),
-        email = character(0)
+        email = character(0),
+        stringsAsFactors = FALSE
       )
     }
   }
