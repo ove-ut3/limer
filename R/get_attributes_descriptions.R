@@ -11,5 +11,7 @@ get_attributes_descriptions <- function(iSurveyID) {
 
   attributes_descriptions <- sapply(attributes_descriptions, `[[`, 1)
 
+  names(attributes_descriptions) <- toupper(names(attributes_descriptions))
+
   return(attributes_descriptions)
 }
