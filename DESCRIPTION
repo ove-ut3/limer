@@ -16,5 +16,5 @@ License: MIT + file LICENSE
 LazyData: TRUE
 URL: https://github.com/cloudyr/limer
 BugReports: https://github.com/cloudyr/limer/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: testthat

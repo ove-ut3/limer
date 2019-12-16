@@ -4,9 +4,14 @@
 \alias{get_participants}
 \title{Export list of participants from a LimeSurvey survey}
 \usage{
-get_participants(iSurveyID, attributes_descriptions = NULL,
-  attributes = NULL, all_attributes = FALSE, conditions = list(),
-  session = FALSE)
+get_participants(
+  iSurveyID,
+  attributes_descriptions = NULL,
+  attributes = NULL,
+  all_attributes = FALSE,
+  conditions = list(),
+  session = FALSE
+)
 }
 \arguments{
 \item{iSurveyID}{\dots}

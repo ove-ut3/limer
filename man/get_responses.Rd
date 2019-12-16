@@ -4,9 +4,17 @@
 \alias{get_responses}
 \title{Export data from a LimeSurvey survey}
 \usage{
-get_responses(iSurveyID, sDocumentType = "csv", sLanguageCode = NULL,
-  sCompletionStatus = "complete", sHeadingType = "code",
-  sResponseType = "long", sep = ";", session = FALSE, ...)
+get_responses(
+  iSurveyID,
+  sDocumentType = "csv",
+  sLanguageCode = NULL,
+  sCompletionStatus = "complete",
+  sHeadingType = "code",
+  sResponseType = "long",
+  sep = ";",
+  session = FALSE,
+  ...
+)
 }
 \arguments{
 \item{iSurveyID}{\dots}

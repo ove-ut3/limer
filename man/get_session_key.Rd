@@ -4,8 +4,10 @@
 \alias{get_session_key}
 \title{Get a LimeSurvey API session key}
 \usage{
-get_session_key(username = getOption("lime_username"),
-  password = getOption("lime_password"))
+get_session_key(
+  username = getOption("lime_username"),
+  password = getOption("lime_password")
+)
 }
 \arguments{
 \item{username}{LimeSurvey username. Defaults to value set in \code{options()}.}

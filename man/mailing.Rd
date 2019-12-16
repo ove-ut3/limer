@@ -4,8 +4,14 @@
 \alias{mailing}
 \title{Perform mailing}
 \usage{
-mailing(survey_id, tid, sleep = 7, delete = FALSE,
-  progress_bar = TRUE, session = FALSE)
+mailing(
+  survey_id,
+  tid,
+  sleep = 7,
+  delete = FALSE,
+  progress_bar = TRUE,
+  session = FALSE
+)
 }
 \arguments{
 \item{survey_id}{Id de l'enquête créée}

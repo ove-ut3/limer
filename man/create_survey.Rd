@@ -4,9 +4,17 @@
 \alias{create_survey}
 \title{Create a complete survey}
 \usage{
-create_survey(survey_id, survey_properties, groups, questions,
-  questions_properties = NULL, subquestions = NULL, answers = NULL,
-  participants_attributes = NULL, quiet = FALSE)
+create_survey(
+  survey_id,
+  survey_properties,
+  groups,
+  questions,
+  questions_properties = NULL,
+  subquestions = NULL,
+  answers = NULL,
+  participants_attributes = NULL,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{survey_id}{Survey id}

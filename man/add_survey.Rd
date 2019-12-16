@@ -4,8 +4,7 @@
 \alias{add_survey}
 \title{Add a survey}
 \usage{
-add_survey(sid, properties, attributedescriptions = NULL,
-  quiet = FALSE)
+add_survey(sid, properties, attributedescriptions = NULL, quiet = FALSE)
 }
 \arguments{
 \item{sid}{Survey id}

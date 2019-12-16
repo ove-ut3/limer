@@ -4,8 +4,17 @@
 \alias{add_question}
 \title{Add a question to a survey}
 \usage{
-add_question(survey_id, group_id, title, type, question, properties,
-  subquestions = NULL, answers = NULL, quiet = FALSE)
+add_question(
+  survey_id,
+  group_id,
+  title,
+  type,
+  question,
+  properties,
+  subquestions = NULL,
+  answers = NULL,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{survey_id}{Survey id}
