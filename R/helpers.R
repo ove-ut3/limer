@@ -1,31 +1,3 @@
-#' Set to completed in the particpants table completed responses
-#'
-#' @param iSurveyID Survey id
-#'
-#' @export
-set_participants_completed <- function(iSurveyID) {
-
-  tbl_update <- iSurveyID %>%
-    limer::get_participants(conditions = list("completed" = "N")) %>%
-    dplyr::inner_join(limer::get_responses(iSurveyID), by = c("id_survey", "token")) %>%
-    dplyr::mutate(submitdate = stringr::str_match(submitdate, "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})")[, 2]) %>%
-    dplyr::select(id_survey, token, completed = submitdate)
-
-  if (nrow(tbl_update) == 0) {
-
-    message("No participants to update")
-
-  } else {
-    update <- tbl_update %>%
-      tidyr::nest_legacy(-id_survey, .key = "tbl_update") %>%
-      split(1:nrow(.)) %>%
-      lapply(function(ligne) {
-        limer::update_participants(ligne$id_survey, ligne$tbl_update[[1]])
-      })
-  }
-
-}
-
 #' export_survey
 #'
 #' @param lss_file \dots
