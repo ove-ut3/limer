@@ -45,7 +45,8 @@ get_participants <- function(iSurveyID, attributes_descriptions = NULL, attribut
   attributes <- purrr::map(iSurveyID, get_attributes) %>%
     purrr::map(tolower)
 
-  rename <- purrr::map(iSurveyID, limer::get_attributes_descriptions)
+  rename <- purrr::map(iSurveyID, limer::get_attributes_descriptions) %>%
+    purrr::map( ~ stats::setNames(., tolower(names(.))))
   if (all_attributes == FALSE) {
     rename <- purrr::map(rename, ~ .[which(. %in% attributes_descriptions)])
   }
