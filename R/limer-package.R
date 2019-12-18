@@ -7,5 +7,6 @@
 #'    you to collect and analyze survey data in a simple,
 #'    reproducible workflow.
 #' @author Andrew Heiss <andrew@andrewheiss.com>
-#' @keywords package 
+#' @keywords package
+#' @importFrom dplyr %>%
 NULL
