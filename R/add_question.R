@@ -104,6 +104,11 @@ add_question <- function(survey_id, group_id, title, type, question, properties,
     if (!all(!is.null(question[["language"]]) & !is.null(answers[["language"]]))) {
       stop("If any of the 3 multi-languages arguments is set (eg : \"question\", \"subquestions\" and \"answers\") then all these arguments must conform to multi-languages specifications", call. = FALSE)
     }
+
+  }
+
+  if (is.null(answers) & type %in% c("L", "!", "O", "F", "H", "1", "R")) {
+    stop(glue::glue("Question {title} of type {type} must have at least one answer"), call. = FALSE)
   }
 
   xml <- xml2::read_xml(system.file(paste0("extdata/question.lsq"), package = "limer"))
