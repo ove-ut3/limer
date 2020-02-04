@@ -95,9 +95,6 @@ create_survey <- function(survey_id, survey_properties, groups, questions, quest
   }
   groups <- tidyr::nest_legacy(groups, -group_order)
 
-  # groups <- groups %>%
-  #   dplyr::filter(dplyr::row_number() <= 9)
-
   groups_id <- purrr::map_chr(groups$data, ~ limer::add_group(survey_id, .))
 
   groups$gid <- as.integer(groups_id)
@@ -145,9 +142,6 @@ create_survey <- function(survey_id, survey_properties, groups, questions, quest
   questions <- groups %>%
     dplyr::select(group_order, gid) %>%
     dplyr::right_join(questions, by = "group_order")
-
-  # questions <- questions %>%
-  #   dplyr::filter(dplyr::row_number() <= 39)
 
   purrr::pwalk(
     list(questions$gid, questions$title, questions$question, questions$type, questions$properties, questions$subquestions, questions$answers),
