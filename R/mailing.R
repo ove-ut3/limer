@@ -47,9 +47,9 @@ mailing_create_survey <- function(from, to, subject, body, session = FALSE) {
     release <- limer::release_session_key()
   }
 
-  list(
-    "survey_id" = survey_id,
-    "tid" = participants$tid
+  dplyr::tibble(
+    survey_id = survey_id,
+    tid = participants$tid
   )
 
 }
