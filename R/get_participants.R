@@ -69,7 +69,7 @@ get_participants <- function(iSurveyID, attributes_descriptions = NULL, attribut
 
   stock_columns <- c("survey_id", "tid", "firstname", "lastname", "email", "token")
   participants <- participants %>%
-    dplyr::select(stock_columns, which(!names(.) %in% stock_columns))
+    dplyr::select(tidyselect::all_of(stock_columns), which(!names(.) %in% stock_columns))
 
   if (session == TRUE) {
     release <- limer::release_session_key()
