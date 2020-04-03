@@ -76,7 +76,7 @@ mailing <- function(survey_id, tid, sleep = 7, delete = FALSE, progress_bar = TR
     fn_apply <- lapply
   }
 
-  mailing <- fn_apply(participants$tid, function(tid) {
+  mailing <- fn_apply(tid, function(tid) {
 
     Sys.sleep(sleep)
 
