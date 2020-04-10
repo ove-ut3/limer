@@ -100,4 +100,5 @@ mailing <- function(survey_id, tid, sleep = 7, delete = FALSE, progress_bar = TR
     release <- limer::release_session_key()
   }
 
+  return(mailing)
 }
