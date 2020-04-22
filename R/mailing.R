@@ -82,7 +82,7 @@ mailing <- function(survey_id, tid, sleep = 7, delete = FALSE, progress_bar = TR
 
     mailing <- limer::mail_registered_participant(survey_id, tid = tid)
 
-    if (length(mailing[[1]]$status) == 0) {
+    if (length(mailing$status) == 0) {
 
       print("reprise au participant tid ", tid)
       key <- limer::get_session_key()
