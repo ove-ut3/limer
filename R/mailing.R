@@ -24,6 +24,8 @@ mailing_create_survey <- function(from, to, subject, body, session = FALSE) {
     attributedescriptions <- "{}"
   }
 
+  body <- gsub("\n", "<br>", body)
+
   lss <- readLines(system.file("extdata/mailing.lss", package = "limer"), encoding = "UTF-8")
   lss <- sub("##subject##", subject, lss)
   lss <- sub("##body##", body, lss)
