@@ -95,7 +95,7 @@ create_survey <- function(survey_id, survey_properties, groups, questions, quest
   }
   groups <- tidyr::nest_legacy(groups, -group_order)
 
-  groups_id <- purrr::map_chr(groups$data, ~ limer::add_group(survey_id, .))
+  groups_id <- purrr::map_chr(groups$data, ~ limer::add_group(survey_id, ., quiet = quiet))
 
   groups$gid <- as.integer(groups_id)
 
@@ -153,7 +153,8 @@ create_survey <- function(survey_id, survey_properties, groups, questions, quest
       type = ..4,
       properties = ..5,
       subquestions = ..6,
-      answers = ..7
+      answers = ..7,
+      quiet = quiet
     )
   )
 
