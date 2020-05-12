@@ -24,6 +24,8 @@ mailing_create_survey <- function(from, to, subject, body, session = FALSE) {
     attributedescriptions <- "{}"
   }
 
+  body <- gsub("\n", "<br>", body)
+
   lss <- readLines(system.file("extdata/mailing.lss", package = "limer"), encoding = "UTF-8")
   lss <- sub("##subject##", subject, lss)
   lss <- sub("##body##", body, lss)
@@ -76,13 +78,13 @@ mailing <- function(survey_id, tid, sleep = 7, delete = FALSE, progress_bar = TR
     fn_apply <- lapply
   }
 
-  mailing <- fn_apply(participants$tid, function(tid) {
+  mailing <- fn_apply(tid, function(tid) {
 
     Sys.sleep(sleep)
 
     mailing <- limer::mail_registered_participant(survey_id, tid = tid)
 
-    if (length(mailing[[1]]$status) == 0) {
+    if (length(mailing$status) == 0) {
 
       print("reprise au participant tid ", tid)
       key <- limer::get_session_key()
@@ -100,4 +102,5 @@ mailing <- function(survey_id, tid, sleep = 7, delete = FALSE, progress_bar = TR
     release <- limer::release_session_key()
   }
 
+  return(mailing)
 }
